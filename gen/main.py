@@ -8,8 +8,8 @@ import json
 
 def main():
     # Use a breakpoint in the code line below to debug your script.
-    lang = 'en_us'
-    fragment = ' Fragment'
+    lang = 'de_de'
+    fragment = 'fragment'
 
     original_json = json.load(open(f'./input/{lang}.json','r',encoding='utf-8'))
     output_json = {}
@@ -19,8 +19,11 @@ def main():
         display_name = original_json[f'block.minecraft.{block}']
         output_json[f'block.jumbo_craft.{block}_fragment'] = f'{display_name}{fragment}'
 
-    with open(f'./output/{lang}.json', mode='w', encoding='utf-8') as f:
-        json.dump(output_json, f)
+    path = f'./output/{lang}.json'
+    with open(path, mode='w', encoding='utf-8') as f:
+        json.dump(output_json, f, ensure_ascii=False, indent=4, sort_keys=True, separators=(',', ': '))
+
+    print(f'saved: {path}')
 
 
 # Press the green button in the gutter to run the script.
